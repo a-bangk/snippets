@@ -7,9 +7,8 @@ FLASK_DEBUG="TRUE"
 mysql = {host="localhost", port=3306, database="snippetsdb_testa", auth={user="snippets_test", passwd="15485099a433658c4701487c66caa3747c831f3440d435b6"}}
 
 
-[personal]
+[production]
 mysql = {host="192.168.0.42", port=3306, database="personal_snippetsdb", auth={user="adam", passwd="savagge23.3"}}
-
 
 
 [pi]

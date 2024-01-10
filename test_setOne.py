@@ -5,11 +5,18 @@ from app import notemanagement as nm
 from app import tagmanagement as tm
 from app import helperfunctions as hf
 
+def test_databaseConnection():
+    print("Testing database connection")
+    database=hf.get_db_connection().database
+    print(database)
+    assert database != None
+
 def test_amIdFromFullNameList():
     assert am.idFromFullNamesList(["Milton Friedman","Finn Kjems","Gary Enzo","Karl Marx"]) == [71,72,73,74]
 
 def test_smIdFromTitle():
-    assert sm.idFromTitle("BabyWise") == 61
+    result=sm.idFromTitle("BabyWise")
+    assert result == 61
 
 def test_sourceFunctions():
     sm.alterSource("Bob Smith", "Test Title 1", '2000',3,'http://www.google.com','')
@@ -77,3 +84,7 @@ def test_alterSnippet_All():
 
 def test_authorManagement():
     assert 1==1
+
+def test_tagManagement():
+    tags=tm.listTagsFull()
+    print (tags)

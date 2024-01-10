@@ -1,6 +1,8 @@
 import sys
 import mariadb
-from dynaconf import settings
+from sqlalchemy import create_engine, text
+import pymysql
+from snippets import settings 
 
 def get_db_connection():
     try: 
@@ -24,4 +26,10 @@ def commaStringToList(commaString):
         itemList.remove("")
     itemList = sorted(itemList, key=str.casefold)
     return itemList
+
+def conn_alchemy():
+    engine = create_engine('mysql+pymysql://'+settings.MYSQL.auth.USER+':'+settings.MYSQL.auth.get("passwd")+'@'+settings.MYSQL.host+':'+str(settings.MYSQL.port)+'/'+settings.MYSQL.database, pool_recycle=3600, echo=True)
+    return engine.connect()
      
+#result=conn_alchemy().execute(text('select * from note;'))
+#print(result.fetchall())
